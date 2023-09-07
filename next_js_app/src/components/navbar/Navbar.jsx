@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react'
 import Link from 'next/link'
 
@@ -44,6 +46,8 @@ const Navbar = () => {
                     <Link key={link.id} href={link.url}>{link.title}</Link>
                 ))}
             </div>
+
+            <button onClick={() => {console.log("::: TEMP: Logout")}}>Logout</button>
         </div>
     )
 }
