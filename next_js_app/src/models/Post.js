@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
-const { Schema } = mongoose
+const existingModel = mongoose.models.Posts;
 
-const postSchema = new Schema({
+const postModel = existingModel || mongoose.model("Posts", new mongoose.Schema({
     title: {
         type: String,
         required: true,
@@ -23,7 +23,6 @@ const postSchema = new Schema({
         type: String,
         required: true,
     },
+}, { timestamps: true }));
 
-}, { timestamps: true })
-
-export default mongoose.model("User", postSchema)
+export default postModel;
