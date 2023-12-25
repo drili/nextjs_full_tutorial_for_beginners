@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from 'react'
-import { signIn } from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
 import styles from "./page.module.css"
@@ -9,6 +9,15 @@ import styles from "./page.module.css"
 const Login = () => {
     const [error, setError] = useState(false)
     const router = useRouter()
+    const session = useSession()
+
+    if (session.loading === "loading") {
+        return <p>Loading...</p>
+    }
+
+    if (session.status === "authenticated") {
+        router?.push("/dashboard")
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -18,7 +27,7 @@ const Login = () => {
 
         signIn("credentials", { email, password })
     }
-    
+
     return (
         <div className={styles.container}>
             <form className={styles.form} onSubmit={handleSubmit}>
