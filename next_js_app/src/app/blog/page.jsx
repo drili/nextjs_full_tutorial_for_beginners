@@ -24,7 +24,7 @@ const Blog = async () => {
                 <Link href={`/blog/${item._id}`} className={styles.container} key={item._id}>
                     <div className={styles.imageContainer}>
                         <Image
-                            src={item.image}
+                            src={item.img}
                             alt=''
                             width={400}
                             height={250}

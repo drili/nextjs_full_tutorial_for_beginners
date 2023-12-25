@@ -58,6 +58,22 @@ const Dashboard = () => {
             })
 
             mutate()
+            e.target.reset()
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const handleDelete = async (postId) => {
+        try {
+            await fetch(`/api/posts/${postId}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type" : "application/json"
+                },
+            })
+
+            mutate()
         } catch (error) {
             console.log(error);
         }
@@ -89,7 +105,7 @@ const Dashboard = () => {
 
                             <h2 className={styles.postTitle}>{post.title}</h2>
 
-                            <span className={styles.delete}>X</span>
+                            <span onClick={() => handleDelete(post._id)} className={styles.delete}>X</span>
                         </section>
                     ))}
 
